@@ -14,8 +14,8 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val screenWidth = 600
-    private val screenHeight = 200
+    private val screenWidth = 490
+    private val screenHeight = 240
     private val cellSize = 50
 
     private val snake = Snake()
@@ -122,8 +122,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun spawnFood() {
-        foodX = random.nextInt(screenWidth / cellSize)
-        foodY = random.nextInt(screenHeight / cellSize)
+        foodX = random.nextInt(screenWidth / 10)
+        foodY = random.nextInt(screenHeight / 10)
     }
 
     private fun endGame() {

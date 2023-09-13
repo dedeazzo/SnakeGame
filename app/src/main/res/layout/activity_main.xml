@@ -4,19 +4,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
+    android:background="@color/black"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:id="@+id/game_frame"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/game_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_above="@+id/start_button">
-        <!-- Snake and food views will be added here dynamically -->
-    </FrameLayout>
+        android:background="@color/white"
+        android:layout_margin="30dp"
+        android:layout_above="@+id/start_button"
+        tools:context=".MainActivity">
+
+        <FrameLayout
+            android:id="@+id/game_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <!-- Snake and food views will be added here dynamically -->
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/start_button"
@@ -28,5 +42,4 @@
         android:text="Start"
         style="@style/CustomButtonStyle"
         android:visibility="visible"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

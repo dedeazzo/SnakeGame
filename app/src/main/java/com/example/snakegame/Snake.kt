@@ -51,9 +51,9 @@ class Snake {
         val head = getHead()
 
         // Check for collision with walls
-        val screenWidth = 600
+        val screenWidth = 490
         val cellSize = 10
-        val screenHeight = 200
+        val screenHeight = 240
         if (head.x < 0 || head.x >= screenWidth / cellSize || head.y < 0 || head.y >= screenHeight / cellSize) {
             return true
         }
