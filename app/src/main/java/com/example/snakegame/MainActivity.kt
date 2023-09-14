@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
     private var foodX: Int = 0
     private var foodY: Int = 0
 
+    private val lock = Any()
+    private var gameRunnable: Runnable? = null
     private var isGameRunning = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,20 +61,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startGame() {
-        isGameRunning = true
-        startButton.isVisible = false
+        synchronized(lock) {
+            gameRunnable?.let {
+                handler.removeCallbacks(it)
+            }
 
-        snake.reset()
-        spawnFood()
+            isGameRunning = true
+            startButton.isVisible = false
 
-        val gameRunnable = object : Runnable {
-            override fun run() {
-                snake.changeDirection(currentDirection) // Update snake's direction
-                updateGame()
-                handler.postDelayed(this, 100)
+            snake.reset()
+            spawnFood()
+
+            gameRunnable = object : Runnable {
+                override fun run() {
+                    snake.changeDirection(currentDirection)
+                    updateGame()
+                    handler.postDelayed(this, 100)
+                }
+            }
+            gameRunnable?.let {
+                handler.postDelayed(it, 100)
             }
         }
-        handler.postDelayed(gameRunnable, 100)
     }
 
     private fun updateGame() {
@@ -129,6 +139,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun endGame() {
         isGameRunning = false
+        Thread.sleep(1000)
         startButton.isVisible = true
         gameFrame.removeAllViews()
     }
