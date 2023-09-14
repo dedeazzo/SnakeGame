@@ -10,4 +10,6 @@
     <color name="snake_color">#FF345345</color>
     <color name="food_color">#FF03DAC5</color>
     <color name="colorButtonBackground">#FF5722</color>
+    <color name="grid_color_1">#FFFFFF</color>
+    <color name="grid_color_2">#CCCCCC</color>
 </resources>

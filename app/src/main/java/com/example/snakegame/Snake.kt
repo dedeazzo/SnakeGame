@@ -1,6 +1,6 @@
 package com.example.snakegame
 
-class Snake {
+class Snake(private var screenWidth: Int, private var screenHeight:Int, private var cellSize:Int) {
     private val initialSize = 3
     private val segments = mutableListOf<Segment>()
     private var direction = Direction.RIGHT
@@ -51,10 +51,8 @@ class Snake {
         val head = getHead()
 
         // Check for collision with walls
-        val screenWidth = 490
-        val cellSize = 10
-        val screenHeight = 240
-        if (head.x < 0 || head.x >= screenWidth / cellSize || head.y < 0 || head.y >= screenHeight / cellSize) {
+        val collisionCellSize = (cellSize / 5)
+        if (head.x < 0 || head.x >= screenWidth / collisionCellSize || head.y < 0 || head.y >= screenHeight / collisionCellSize) {
             return true
         }
 

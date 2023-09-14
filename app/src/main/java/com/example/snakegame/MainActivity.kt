@@ -14,11 +14,12 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val screenWidth = 490
-    private val screenHeight = 240
-    private val cellSize = 50
+    // maintain a 2:5 ratio for screen dimensions where 2 is this screen width and 5 is dp in main_activity @+id/game_container for cellSize 50
+    val screenWidth = 300
+    val screenHeight = 200
+    val cellSize = 50
 
-    private val snake = Snake()
+    private val snake = Snake(screenWidth, screenHeight, cellSize)
     private val random = Random()
     private val handler = Handler(Looper.getMainLooper())
 
@@ -122,8 +123,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun spawnFood() {
-        foodX = random.nextInt(screenWidth / 10)
-        foodY = random.nextInt(screenHeight / 10)
+        foodX = random.nextInt(screenWidth / (cellSize / 5))
+        foodY = random.nextInt(screenHeight / (cellSize / 5))
     }
 
     private fun endGame() {
