@@ -4,10 +4,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
-    android:background="@color/black"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/food_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_alignParentTop="true"
+        android:padding="16dp"
+        android:text="@string/food_score"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/highest_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/food_counter"
+        android:padding="16dp"
+        android:text="@string/highest_score"
+        android:textSize="18sp"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/game_container_frame"

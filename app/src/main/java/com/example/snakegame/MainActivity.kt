@@ -9,6 +9,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.core.view.isVisible
 import java.util.*
 
@@ -18,6 +19,10 @@ class MainActivity : AppCompatActivity() {
     val screenWidth = 300
     val screenHeight = 200
     val cellSize = 50
+    private lateinit var foodCounter: TextView
+    private lateinit var highestScore: TextView
+    private var foodCounterCount = 0
+    private var highestScoreCount = 0
 
     private val snake = Snake(screenWidth, screenHeight, cellSize)
     private val random = Random()
@@ -40,6 +45,8 @@ class MainActivity : AppCompatActivity() {
 
         gameFrame = findViewById(R.id.game_frame)
         startButton = findViewById(R.id.start_button)
+        foodCounter = findViewById(R.id.food_counter)
+        highestScore = findViewById(R.id.highest_score)
 
         startButton.setOnClickListener {
             if (!isGameRunning) {
@@ -94,6 +101,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (snake.eatFood(foodX, foodY)) {
+            foodCounterCount++
+            if (foodCounterCount > highestScoreCount) {
+                highestScoreCount = foodCounterCount
+            }
+            updateScoreViews()
             spawnFood()
         }
 
@@ -137,10 +149,20 @@ class MainActivity : AppCompatActivity() {
         foodY = random.nextInt(screenHeight / (cellSize / 5))
     }
 
+    private fun updateScoreViews() {
+        // Update the TextViews with the current scores
+        foodCounter.text = "Food Eaten: $foodCounterCount"
+        highestScore.text = "Highest Score: $highestScoreCount"
+    }
+
     private fun endGame() {
         isGameRunning = false
         Thread.sleep(1000)
         startButton.isVisible = true
         gameFrame.removeAllViews()
+
+        // Reset the food eaten counter
+        foodCounterCount = 0
+        updateScoreViews()
     }
 }
