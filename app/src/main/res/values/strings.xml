@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">SnakeGame</string>
     <string name="start">Start</string>
-    <string name="food_score">Food Eaten: 0</string>
-    <string name="highest_score">Highest Score: 0</string>
+    <string name="food_score">0</string>
+    <string name="highest_score">0</string>
 </resources>

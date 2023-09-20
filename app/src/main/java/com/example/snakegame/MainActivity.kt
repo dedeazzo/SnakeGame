@@ -1,14 +1,13 @@
 package com.example.snakegame
 
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.KeyEvent
-import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import java.util.*
@@ -124,6 +123,8 @@ class MainActivity : AppCompatActivity() {
         return super.onKeyDown(keyCode, event)
     }
 
+    /*
+    // square drawables
     private fun drawSnake() {
         for (segment in snake.getSegments()) {
             val segmentView = View(this)
@@ -142,6 +143,27 @@ class MainActivity : AppCompatActivity() {
         params.leftMargin = foodX * cellSize
         params.topMargin = foodY * cellSize
         gameFrame.addView(foodView, params)
+    }*/
+
+    // icon drawables
+    private fun drawSnake() {
+        for (segment in snake.getSegments()) {
+            val segmentView = ImageView(this)
+            segmentView.setImageResource(R.drawable.truck_24) // Set snake icon
+            val params = FrameLayout.LayoutParams(cellSize+20, cellSize+20)
+            params.leftMargin = segment.x * cellSize
+            params.topMargin = segment.y * cellSize
+            gameFrame.addView(segmentView, params)
+        }
+    }
+
+    private fun drawFood() {
+        val foodView = ImageView(this)
+        foodView.setImageResource(R.drawable.package_24) // Set food icon
+        val params = FrameLayout.LayoutParams(cellSize+20, cellSize+20)
+        params.leftMargin = foodX * cellSize
+        params.topMargin = foodY * cellSize
+        gameFrame.addView(foodView, params)
     }
 
     private fun spawnFood() {
@@ -151,8 +173,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateScoreViews() {
         // Update the TextViews with the current scores
-        foodCounter.text = "Food Eaten: $foodCounterCount"
-        highestScore.text = "Highest Score: $highestScoreCount"
+        foodCounter.text = "$foodCounterCount"
+        highestScore.text = "$highestScoreCount"
     }
 
     private fun endGame() {

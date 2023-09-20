@@ -9,26 +9,66 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/food_counter"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/food_eaten_container"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:paddingLeft="30dp"
+        android:paddingTop="45dp"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_alignParentTop="true"
-        android:padding="16dp"
-        android:text="@string/food_score"
-        android:textSize="18sp"/>
-
-    <TextView
-        android:id="@+id/highest_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/food_counter"
-        android:padding="16dp"
-        android:text="@string/highest_score"
-        android:textSize="18sp"/>
+        tools:context=".MainActivity">
+
+        <ImageView
+            android:id="@+id/food_eaten_icon"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/package_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/food_counter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/food_eaten_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="16dp"
+            android:text="@string/food_score"
+            android:textSize="38sp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/highest_score_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/food_eaten_container"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:context=".MainActivity">
+
+        <ImageView
+            android:id="@+id/highest_score_icon"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/trophy_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/highest_score"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/highest_score_icon"
+            app:layout_constraintTop_toTopOf="@+id/highest_score_container"
+            android:padding="16dp"
+            android:text="@string/highest_score"
+            android:textSize="38sp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/game_container_frame"
