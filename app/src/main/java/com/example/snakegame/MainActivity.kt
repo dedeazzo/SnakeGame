@@ -49,6 +49,8 @@ class MainActivity : AppCompatActivity() {
 
         startButton.setOnClickListener {
             if (!isGameRunning) {
+                // use the following line to leave the previous game visible until next game
+                gameFrame.removeAllViews()
                 startGame()
             }
         }
@@ -181,7 +183,8 @@ class MainActivity : AppCompatActivity() {
         isGameRunning = false
         Thread.sleep(1000)
         startButton.isVisible = true
-        gameFrame.removeAllViews()
+        // uncomment the next line to remove the game played as soon as it ends
+        //gameFrame.removeAllViews()
 
         // Reset the food eaten counter
         foodCounterCount = 0
