@@ -79,6 +79,7 @@ class MainActivity : AppCompatActivity() {
 
             snake.reset()
             spawnFood()
+            currentDirection = Direction.RIGHT
 
             gameRunnable = object : Runnable {
                 override fun run() {
