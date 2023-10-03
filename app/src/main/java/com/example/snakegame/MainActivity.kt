@@ -150,10 +150,12 @@ class MainActivity : AppCompatActivity() {
 
     // icon drawables
     private fun drawSnake() {
-        for (segment in snake.getSegments()) {
+        for ((index, segment) in snake.getSegments().withIndex()) {
             val segmentView = ImageView(this)
-            segmentView.setImageResource(R.drawable.truck_24) // Set snake icon
-            val params = FrameLayout.LayoutParams(cellSize+20, cellSize+20)
+            val drawableResource = if (index == 0 && currentDirection==Direction.LEFT) R.drawable.truck_24_l else if (index == 0) R.drawable.truck_24 else R.drawable.trailer_24
+            segmentView.setImageResource(drawableResource)
+
+            val params = FrameLayout.LayoutParams(cellSize+10, cellSize+10)
             params.leftMargin = segment.x * cellSize
             params.topMargin = segment.y * cellSize
             gameFrame.addView(segmentView, params)
